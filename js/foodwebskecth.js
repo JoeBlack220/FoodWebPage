@@ -1,43 +1,45 @@
+let sketch = function (p){
+
 // --------------------- Sketch-wide variables ----------------------
-let matrix;
-let allSpeciesName = [];
-let speciesNum;
-let allSpecies = [];
-let bigCircleDia = 600;
-let interval;
-let last;
-let bigCircle;
-let img;
-let description;
-let predPray = true;
-let paraHost = true;
-let predHost = true;
-let paraPara = true;
-let buttonX = 50;
-let buttonY = 800;
-let canvasX = 1920;
-let canvasY = 1080;
-let foodChainX = 1500;
-let foodChainY = 525;
-let foodChainRadius = 20;
-let foodChainLine = 200;
-let foodChainIndex = 40;
-let descImage;
-let descX = 1400;
-let descY = 840;
-let descLength = 400;
-let descHeight = 200;
-let imageX = 1100;
-let imageY = 810;
-let imageLength = 300;
-let imageHeight = 220;
-let totalNum;
-let descLines;
-// color for basal, freeliving and parasite
+  let matrix;
+  let allSpeciesName = [];
+  let speciesNum;
+  let allSpecies = [];
+  let bigCircleDia = 600;
+  let interval;
+  let last;
+  let bigCircle;
+  let img;
+  let description;
+  let predPray = true;
+  let paraHost = true;
+  let predHost = true;
+  let paraPara = true;
+  let buttonX = 50;
+  let buttonY = 800;
+  let canvasX = 1920;
+  let canvasY = 1080;
+  let foodChainX = 1500;
+  let foodChainY = 525;
+  let foodChainRadius = 20;
+  let foodChainLine = 200;
+  let foodChainIndex = 40;
+  let descImage;
+  let descX = 1400;
+  let descY = 840;
+  let descLength = 400;
+  let descHeight = 200;
+  let imageX = 1100;
+  let imageY = 810;
+  let imageLength = 300;
+  let imageHeight = 220;
+  let totalNum;
+  let descLines;
+  // color for basal, freeliving and parasite
 
-let connectance;
-let preyCor = []; 
-let predatorCor = []; 
+  let connectance;
+  let preyCor = []; 
+  let predatorCor = []; 
 // ------------------------ Initialisation --------------------------
 
 // Initialises the data and bar chart.
@@ -45,17 +47,17 @@ let predatorCor = [];
 // ------------------------ Initialisation --------------------------
 
 // Initialises the data and bar chart.
-function preload(){
-  matrix = loadTable('carpinteria.csv', 'csv');
+p.preload = function(){
+  matrix = p.loadTable('/data/carpinteria.csv', 'csv');
 }
 
-function setup(){
+p.setup = function(){
 
-  createCanvas(1920, 1080);
-  smooth(); 
-  let speciesColor1 = color(102,194,165);
-  let speciesColor2 = color(252,141,98);
-  let speciesColor3 = color(141,160,203);
+  p.createCanvas(1920, 1080);
+  p.smooth(); 
+  let speciesColor1 = p.color(102,194,165);
+  let speciesColor2 = p.color(252,141,98);
+  let speciesColor3 = p.color(141,160,203);
   // Load the data table.
   // The first row of the table saves all the name of species in the food web.
   // Extract them all and save them in a String array.
@@ -76,91 +78,91 @@ function setup(){
   computeConnectance(); 
 }
 
-function mouseClicked(){
-  // if(evt.getCount() == 2) deleteFoodChainIndex(mouseX,mouseY);
+p.mouseClicked = function(){
+  // if(evt.getCount() == 2) deleteFoodChainIndex(p.mouseX,p.mouseY);
   //last = millis();
-  if (mouseX <= buttonX + 10 && mouseX >= buttonX && mouseY <= buttonY + 10 && mouseY >= buttonY) {
+  if (p.mouseX <= buttonX + 10 && p.mouseX >= buttonX && p.mouseY <= buttonY + 10 && p.mouseY >= buttonY) {
     if (predPray == false) predPray = true;
     else predPray = false;
   }
-  if (mouseX <= buttonX + 10 && mouseX >= buttonX && mouseY <= buttonY + 30 && mouseY >= buttonY + 20) {
+  if (p.mouseX <= buttonX + 10 && p.mouseX >= buttonX && p.mouseY <= buttonY + 30 && p.mouseY >= buttonY + 20) {
     if (paraHost == false) paraHost = true;
     else paraHost = false;
   }
-  if (mouseX <= buttonX + 10 && mouseX >= buttonX && mouseY <= buttonY + 50 && mouseY >= buttonY + 40) {
+  if (p.mouseX <= buttonX + 10 && p.mouseX >= buttonX && p.mouseY <= buttonY + 50 && p.mouseY >= buttonY + 40) {
     if (predHost == false) predHost = true;
     else predHost = false;
   }
-  if (mouseX <= buttonX + 10 && mouseX >= buttonX && mouseY <= buttonY + 70 && mouseY >= buttonY + 60) {
+  if (p.mouseX <= buttonX + 10 && p.mouseX >= buttonX && p.mouseY <= buttonY + 70 && p.mouseY >= buttonY + 60) {
     if (paraPara == false) paraPara = true;
     else paraPara = false;
   }
-  if(mouseX <= 650 + 20 && mouseX >= 650 && mouseY <= 920 + 20 && mouseY >= 920) resetFoodWeb();
-  setFoodChainIndex(mouseX, mouseY);
+  if(p.mouseX <= 650 + 20 && p.mouseX >= 650 && p.mouseY <= 920 + 20 && p.mouseY >= 920) resetFoodWeb();
+  setFoodChainIndex(p.mouseX, p.mouseY);
 }
 
-function doubleClicked(){
-  deleteFoodChainIndex(mouseX, mouseY);
+p.doubleClicked = function(){
+  deleteFoodChainIndex(p.mouseX, p.mouseY);
   return false;
 }
 
-function draw()
+p.draw = function()
 { 
-   textAlign(LEFT);
-   background(255);
-   fill(255,255,255);
-   stroke(0);
-   ellipse(725, 475, bigCircleDia, bigCircleDia)
-   textSize(15);
-   fill(0);
-   noStroke();
-   text("Subwebs (click to select)", 45, buttonY - 10);
-   if (predPray) fill(152,78,163);
-   else noFill();
-   rect(buttonX, buttonY, 10, 10);
-   fill(152,78,163);
-   text("pedator-prey", buttonX + 13, buttonY + 10); 
+  p.textAlign(p.LEFT);
+  p.background(255);
+  p.fill(255,255,255);
+  p.stroke(0);
+  p.ellipse(725, 475, bigCircleDia, bigCircleDia)
+  p.textSize(15);
+  p.fill(0);
+  p.noStroke();
+  p.text("Subwebs (click to select)", 45, buttonY - 10);
+   if (predPray) p.fill(152,78,163);
+   else p.noFill();
+  p.rect(buttonX, buttonY, 10, 10);
+  p.fill(152,78,163);
+  p.text("pedator-prey", buttonX + 13, buttonY + 10); 
    
-   if (paraHost) fill(247,129,191);
-   else noFill();
-   rect(buttonX, buttonY + 20, 10, 10);
-   fill(247,129,191);
-   text("parasite-host", buttonX + 13, buttonY + 30);
+   if (paraHost) p.fill(247,129,191);
+   else p.noFill();
+   p.rect(buttonX, buttonY + 20, 10, 10);
+   p.fill(247,129,191);
+   p.text("parasite-host", buttonX + 13, buttonY + 30);
    
-   if (predHost) fill(78,179,211);
-   else noFill();
-   rect(buttonX, buttonY + 40, 10, 10);
-   fill(78,179,211);
-   text("predator-parasite", buttonX + 13, buttonY + 50);
+   if (predHost) p.fill(78,179,211);
+   else p.noFill();
+   p.rect(buttonX, buttonY + 40, 10, 10);
+   p.fill(78,179,211);
+   p.text("predator-parasite", buttonX + 13, buttonY + 50);
    
-   if (paraPara) fill(153,153,153);
-   else noFill();
-   rect(buttonX, buttonY + 60, 10, 10);
-   fill(153,153,153);
-   text("parasite-parasite", buttonX + 13, buttonY + 70);
+   if (paraPara) p.fill(153,153,153);
+   else p.noFill();
+   p.rect(buttonX, buttonY + 60, 10, 10);
+   p.fill(153,153,153);
+   p.text("parasite-parasite", buttonX + 13, buttonY + 70);
    //reset button
-   rect(650,920,20,20);
-   fill(0);
-   text("Reset the food web", 650 + 25, 935);
+   p.rect(650,920,20,20);
+   p.fill(0);
+   p.text("Reset the food web", 650 + 25, 935);
 
    
    var tpsX = 55;
    var tpsY = 250;
-   fill(102,194,165); circle(tpsX, tpsY, 15);
-   fill(1252,141,98); circle(tpsX, tpsY + 20, 15);
-   fill(141,160,203); circle(tpsX, tpsY + 40, 15);
+   p.fill(102,194,165); p.circle(tpsX, tpsY, 15);
+   p.fill(1252,141,98); p.circle(tpsX, tpsY + 20, 15);
+   p.fill(141,160,203); p.circle(tpsX, tpsY + 40, 15);
    
-   fill(0);
-   textSize(14);
-   text("Types of species", tpsX-10, tpsY-15);
-   textSize(14);
-   text("Basal", tpsX + 10, tpsY + 5);
-   text("Freeliving", tpsX + 10, tpsY + 25);
-   text("Parasite", tpsX+10, tpsY+45);
+   p.fill(0);
+   p.textSize(14);
+   p.text("Types of species", tpsX-10, tpsY-15);
+   p.textSize(14);
+   p.text("Basal", tpsX + 10, tpsY + 5);
+   p.text("Freeliving", tpsX + 10, tpsY + 25);
+   p.text("Parasite", tpsX+10, tpsY+45);
    
    
    
-   text("Connectance: " + connectance, 650, 980);
+   p.text("Connectance: " + connectance, 650, 980);
 
    for(let i = 0; i < speciesNum; i++){
      if (allSpecies[i].getStatus()) drawFoodWeb(i);
@@ -190,49 +192,49 @@ function drawFoodWeb(i){
        if(ijRelation != 0) {
          if (predPray){
            if(ijRelation == 1) {
-             strokeWeight(0.5);
-             stroke(c);
-             line(first.getXCor(), first.getYCor(), second.getXCor(), second.getYCor());
+             p.strokeWeight(0.5);
+             p.stroke(c);
+             p.line(first.getXCor(), first.getYCor(), second.getXCor(), second.getYCor());
            }
            if(ijRelation==1.2||ijRelation==1.25) {
-             strokeWeight(0.5);
-             stroke(c);
-             line(first.getXCor(), first.getYCor(), second.getXCor(), second.getYCor());
+             p.strokeWeight(0.5);
+             p.stroke(c);
+             p.line(first.getXCor(), first.getYCor(), second.getXCor(), second.getYCor());
            }
            if(ijRelation==2||ijRelation==2.5) {
-             strokeWeight(0.5);
-             stroke(c);
-             line(first.getXCor(), first.getYCor(), second.getXCor(), second.getYCor());
+             p.strokeWeight(0.5);
+             p.stroke(c);
+             p.line(first.getXCor(), first.getYCor(), second.getXCor(), second.getYCor());
            }
            if(ijRelation==3) {
-             strokeWeight(0.5);
-             stroke(c);
-             line(first.getXCor(), first.getYCor(), second.getXCor(), second.getYCor());
+             p.strokeWeight(0.5);
+             p.stroke(c);
+             p.line(first.getXCor(), first.getYCor(), second.getXCor(), second.getYCor());
          }
          if(paraHost){
            if(ijRelation==4||ijRelation==4.1||ijRelation==4.11||ijRelation==4.2) {
-             strokeWeight(0.45);
-             stroke(c);
-             line(first.getXCor(), first.getYCor(), second.getXCor(), second.getYCor());
+             p.strokeWeight(0.45);
+             p.stroke(c);
+             p.line(first.getXCor(), first.getYCor(), second.getXCor(), second.getYCor());
            }
          }
          if (predHost){
            if(ijRelation==5||ijRelation==6) {
-             strokeWeight(0.5);
-             stroke(c);
-             line(first.getXCor(), first.getYCor(), second.getXCor(), second.getYCor());
+             p.strokeWeight(0.5);
+             p.stroke(c);
+             p.line(first.getXCor(), first.getYCor(), second.getXCor(), second.getYCor());
            } 
            if(ijRelation==7||ijRelation==8) {
-             strokeWeight(0.25);
-             stroke(c);
-             line(first.getXCor(), first.getYCor(), second.getXCor(), second.getYCor());
+             p.strokeWeight(0.25);
+             p.stroke(c);
+             p.line(first.getXCor(), first.getYCor(), second.getXCor(), second.getYCor());
            } 
          }
          if (paraPara){
            if(ijRelation==9) {
-             strokeWeight(0.5);
-             stroke(c);
-             line(first.getXCor(), first.getYCor(), second.getXCor(), second.getYCor());
+             p.strokeWeight(0.5);
+             p.stroke(c);
+             p.line(first.getXCor(), first.getYCor(), second.getXCor(), second.getYCor());
            } 
          }
        }
@@ -370,49 +372,49 @@ function drawFoodChains(index){
     let curSpecies = preyCor[i];
     for(let j = 0; j < curSpecies.length; j++){
       let temp = curSpecies[j];
-      line(temp[0], temp[1], temp[2], temp[3]);
+      p.line(temp[0], temp[1], temp[2], temp[3]);
     }
   }
   for(let i = 0; i < predatorCor.length; i++){
     let curSpecies = predatorCor[i];
     for(let j = 0; j < curSpecies.length; j++){
       let temp = curSpecies[j];
-      line(temp[0], temp[1], temp[2], temp[3]);
+      p.line(temp[0], temp[1], temp[2], temp[3]);
     }  
   }
   let type = curS.getType();
   // If type is Basal, set the color to royal blue.
-  if (type == "Basal") fill(color(102,194,165));
+  if (type == "Basal") p.fill(p.color(102,194,165));
   // If type is Freeliving, set the color to Spring Green1.
-  else if (type == "Freeliving") fill(color(252,141,98));
+  else if (type == "Freeliving") p.fill(p.color(252,141,98));
   // If type is Basal, set the color to Orange Red.
-  else if (type == "Parasite") fill(color(141,160,203));
-  ellipse(foodChainX, foodChainY, foodChainRadius, foodChainRadius);
-  fill(50);
-  textAlign(CENTER);
-  textSize(9);
-  text(curS.getName(), foodChainX, foodChainY + 15);
-  textSize(18);
-  text("Food chains around " + curS.getName() + ".", foodChainX, foodChainY - 250);
-  textSize(12);
+  else if (type == "Parasite") p.fill(p.color(141,160,203));
+  p.ellipse(foodChainX, foodChainY, foodChainRadius, foodChainRadius);
+  p.fill(50);
+  p.textAlign(p.CENTER);
+  p.textSize(9);
+  p.text(curS.getName(), foodChainX, foodChainY + 15);
+  p.textSize(18);
+  p.text("Food chains around " + curS.getName() + ".", foodChainX, foodChainY - 250);
+  p.textSize(12);
   for(let i = 0; i < preyCor.length; i++){
     let curSpecies = preyCor[i];
     for(let j = 0; j < curSpecies.length; j++){
       temp = curSpecies[j];
       type = allSpecies[temp[4]].getType();
       // If type is Basal, set the color to royal blue.
-      if (type == "Basal") fill(color(102,194,165));
+      if (type == "Basal") p.fill(p.color(102,194,165));
       // If type is Freeliving, set the color to Spring Green1.
-      else if (type == "Freeliving") fill(color(252,141,98));
+      else if (type == "Freeliving") p.fill(p.color(252,141,98));
       // If type is Basal, set the color to Orange Red.
-      else if (type == "Parasite") fill(color(141,160,203));
-      ellipse(temp[0], temp[1], foodChainRadius, foodChainRadius);
-      fill(50);
-      textAlign(LEFT);
-      textSize(9);
+      else if (type == "Parasite") p.fill(p.color(141,160,203));
+      p.ellipse(temp[0], temp[1], foodChainRadius, foodChainRadius);
+      p.fill(50);
+      p.textAlign(p.LEFT);
+      p.textSize(9);
       let printName = allSpecies[temp[4]].getName().split(" ");
       for(let i = 0; i < printName.length ; i++){
-        text(printName[i], temp[0] - 10 , temp[1] + 18 + 8*  i);
+        p.text(printName[i], temp[0] - 10 , temp[1] + 18 + 8*  i);
       }
     }
   }
@@ -422,34 +424,34 @@ function drawFoodChains(index){
       let temp = curSpecies[j];
       type = allSpecies[temp[4]].getType();
       // If type is Basal, set the color to royal blue.
-      if (type == "Basal") fill(color(102,194,165));
+      if (type == "Basal") p.fill(p.color(102,194,165));
       // If type is Freeliving, set the color to Spring Green1.
-      else if (type == "Freeliving") fill(color(252,141,98));
+      else if (type == "Freeliving") p.fill(p.color(252,141,98));
       // If type is Basal, set the color to Orange Red.
-      else if (type == "Parasite") fill(color(141,160,203));
-      ellipse(temp[0], temp[1], foodChainRadius, foodChainRadius);
-      fill(50);
-      textAlign(RIGHT);
-      textSize(9);
+      else if (type == "Parasite") p.fill(p.color(141,160,203));
+      p.ellipse(temp[0], temp[1], foodChainRadius, foodChainRadius);
+      p.fill(50);
+      p.textAlign(p.RIGHT);
+      p.textSize(9);
       let printName = allSpecies[temp[4]].getName().split(" ");
       for(let i = 0; i < printName.length ; i++){
-        text(printName[i], temp[0] - 10 , temp[1] + 18 + 8*  i);
+        p.text(printName[i], temp[0] - 10 , temp[1] + 18 + 8*  i);
       }
     }
   }
-   textAlign(LEFT);
-   textSize(18);
+   p.textAlign(p.LEFT);
+   p.textSize(18);
    let curName = curS.getName()
-   text(curName, 1400, 825);
+   p.text(curName, 1400, 825);
    // img = curS.getImg();
    // image(img, 1100, 810,300,220);
    // textSize(15);
    // description = curS.getDesc();
    // text(description, 1400, 840, 400, 200);
-   image(curS.getImg(), imageX, imageY, imageLength, imageHeight);
-   textSize(15);
-   loadStrings("./desc/" + curName + ".txt", setDesc);
-   text(descLines, descX, descY, descLength, descHeight);
+   p.image(curS.getImg(), imageX, imageY, imageLength, imageHeight);
+   p.textSize(15);
+   p.loadStrings("./data/desc/" + curName + ".txt", setDesc);
+   p.text(descLines, descX, descY, descLength, descHeight);
    // this.description = Arrays.toString(lines);
 }
 
@@ -520,17 +522,16 @@ class Species {
         else this.relations.push(speciesRow.getNum(i));
       }
       this.diameter = (bigCircleDia * Math.PI / this.speciesNum);
-      console.log(bigCircleDia);
-      this.xCor = (725.0 + cos(radians(this.index * this.interval)) * bigCircleDia / 2.0);
-      this.yCor = (475.0 + sin(radians(this.index * this.interval)) * bigCircleDia / 2.0);
-      this.xNum = (725.0 + cos(radians(this.index * this.interval)) * (bigCircleDia / 2.0 + 10));
-      this.yNum = (475.0 + sin(radians(this.index * this.interval)) * (bigCircleDia / 2.0 + 10));
-      if (this.type == "Basal") this.c = color(102,194,165);
+      this.xCor = (725.0 + p.cos(p.radians(this.index * this.interval)) * bigCircleDia / 2.0);
+      this.yCor = (475.0 + p.sin(p.radians(this.index * this.interval)) * bigCircleDia / 2.0);
+      this.xNum = (725.0 + p.cos(p.radians(this.index * this.interval)) * (bigCircleDia / 2.0 + 10));
+      this.yNum = (475.0 + p.sin(p.radians(this.index * this.interval)) * (bigCircleDia / 2.0 + 10));
+      if (this.type == "Basal") this.c = p.color(102,194,165);
       // If type is Freeliving, set the color to Spring Green1.
-      else if (this.type == "Freeliving") this.c = color(252,141,98);
+      else if (this.type == "Freeliving") this.c = p.color(252,141,98);
       // If type is Basal, set the color to Orange Red.
-      else this.c = color(141,160,203);
-      this.img = loadImage("./pics/" + this.name + ".jpg");
+      else this.c = p.color(141,160,203);
+      this.img = p.loadImage("./data/pics/" + this.name + ".jpg");
 
   }
 
@@ -538,8 +539,8 @@ class Species {
     return this.img;
   }
   drawShape(){
-    fill(this.c);
-    ellipse(this.xCor, this.yCor, this.diameter, this.diameter);
+    p.fill(this.c);
+    p.ellipse(this.xCor, this.yCor, this.diameter, this.diameter);
   }
    
   getName(){
@@ -585,3 +586,7 @@ class Species {
     return this.index;
   }
 }
+
+}
+
+let myp5 = new p5(sketch);
