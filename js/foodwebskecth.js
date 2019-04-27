@@ -493,23 +493,6 @@ function deleteFoodChainIndex(x, y){
 
 class Species {
 
-  // private String name;
-  // private String type;
-  // private ArrayList<Float> relations = new ArrayList<Float>();
-  // private PShape shape; 没有pshape了
-  // private float diameter;
-  // private float xCor;
-  // private float yCor;
-  // private float xNum;
-  // private float yNum;
-  // private int index;
-  // private int speciesNum;
-  // private String description = "";
-  // private PImage img;
-  // private boolean activated = true;
-  // private color c;
-  // private final float interval = (float)360/128;
-
   constructor(speciesRow, bigCircleDia, idx, total, columnNum){
     this.index = idx;
     this.speciesNum = total;
@@ -589,4 +572,6 @@ class Species {
 
 }
 
-let myp5 = new p5(sketch);
+function drawANew(){
+  let myp5 = new p5(sketch);
+}
