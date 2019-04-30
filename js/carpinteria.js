@@ -31,6 +31,7 @@ let sketch = function (p){
   let descHeight = 200;
   let imageX = 1100;
   let imageY = 810;
+  let backgroundImage;
   let imageLength = 300;
   let imageHeight = 220;
   let totalNum;
@@ -48,11 +49,11 @@ let sketch = function (p){
 
 // Initialises the data and bar chart.
 p.preload = function(){
-  matrix = p.loadTable('/data/carpinteria.csv', 'csv');
+  matrix = p.loadTable('/data/carpinteria/carpinteria.csv', 'csv');
+  backgroundImage = p.loadImage('/data/carpinteria/back.jpg');
 }
 
 p.setup = function(){
-
   p.createCanvas(1920, 1080);
   p.smooth(); 
   let speciesColor1 = p.color(102,194,165);
@@ -107,7 +108,7 @@ p.doubleClicked = function(){
 }
 
 p.draw = function()
-{ 
+{   
   p.textAlign(p.LEFT);
   p.background(255);
   p.fill(255,255,255);
@@ -168,6 +169,9 @@ p.draw = function()
      if (allSpecies[i].getStatus()) drawFoodWeb(i);
    }
    drawFoodChains(foodChainIndex);
+   p.tint(255, 50);
+   p.image(backgroundImage,0,0,canvasX,canvasY);
+      p.tint(255, 255);
 
  
 }
@@ -450,7 +454,7 @@ function drawFoodChains(index){
    // text(description, 1400, 840, 400, 200);
    p.image(curS.getImg(), imageX, imageY, imageLength, imageHeight);
    p.textSize(15);
-   p.loadStrings("./data/desc/" + curName + ".txt", setDesc);
+   p.loadStrings("./data/carpinteria/desc/" + curName + ".txt", setDesc);
    p.text(descLines, descX, descY, descLength, descHeight);
    // this.description = Arrays.toString(lines);
 }
@@ -514,7 +518,7 @@ class Species {
       else if (this.type == "Freeliving") this.c = p.color(252,141,98);
       // If type is Basal, set the color to Orange Red.
       else this.c = p.color(141,160,203);
-      this.img = p.loadImage("./data/pics/" + this.name + ".jpg");
+      this.img = p.loadImage("./data/carpinteria/pics/" + this.name + ".jpg");
 
   }
 
