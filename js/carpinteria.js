@@ -49,8 +49,8 @@ let sketch = function (p){
 
 // Initialises the data and bar chart.
 p.preload = function(){
-  matrix = p.loadTable('/data/carpinteria/carpinteria.csv', 'csv');
-  backgroundImage = p.loadImage('/data/carpinteria/back.jpg');
+  matrix = p.loadTable('./data/carpinteria/carpinteria.csv', 'csv');
+  backgroundImage = p.loadImage('./data/carpinteria/back.jpg');
 }
 
 p.setup = function(){
