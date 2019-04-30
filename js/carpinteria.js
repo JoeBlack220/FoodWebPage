@@ -17,7 +17,7 @@ let sketch = function (p){
   let paraPara = true;
   let buttonX = 50;
   let buttonY = 200;
-  let canvasX = 1920;
+  let canvasX = 1300;
   let canvasY = 1080;
   let foodChainX = 800;
   let foodChainY = 900;
@@ -60,7 +60,7 @@ p.preload = function(){
 }
 
 p.setup = function(){
-  p.createCanvas(1920, 1080);
+  p.createCanvas(canvasX, canvasY);
   p.smooth(); 
   let speciesColor1 = p.color(102,194,165);
   let speciesColor2 = p.color(252,141,98);
@@ -588,8 +588,4 @@ class Species {
   }
 }
 
-}
-
-function drawANew(){
-  let myp5 = new p5(sketch);
 }

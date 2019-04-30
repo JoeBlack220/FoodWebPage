@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="./js/p5/p5.js"></script>
     <script src="./js/carpinteria.js"></script>
+    <script src="./js/3Dcarpinteria.js"></script>    
     <script src="./js/jquery-3.4.0.js"></script>    
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -44,13 +45,11 @@
     </nav><!-- #header-nav -->
 
   </header>
-
-  <div>
+  <div id="sketchContainer">
     <script type="text/javascript">
-      drawANew();
+      new p5(sketch, window.document.getElementById('sketchContainer'));
+      new p5(sketch3D, window.document.getElementById('sketchContainer'))
     </script>
-
   </div>
-
   </body>
 </html>
