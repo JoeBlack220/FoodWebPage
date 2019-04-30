@@ -5,7 +5,7 @@ let sketch = function (p){
   let allSpeciesName = [];
   let speciesNum;
   let allSpecies = [];
-  let bigCircleDia = 600;
+  let bigCircleDia = 500;
   let interval;
   let last;
   let bigCircle;
@@ -16,21 +16,27 @@ let sketch = function (p){
   let predHost = true;
   let paraPara = true;
   let buttonX = 50;
-  let buttonY = 800;
+  let buttonY = 200;
   let canvasX = 1920;
   let canvasY = 1080;
-  let foodChainX = 1500;
-  let foodChainY = 525;
+  let foodChainX = 800;
+  let foodChainY = 900;
   let foodChainRadius = 20;
   let foodChainLine = 200;
   let foodChainIndex = 40;
   let descImage;
-  let descX = 1400;
-  let descY = 840;
-  let descLength = 400;
-  let descHeight = 200;
-  let imageX = 1100;
-  let imageY = 810;
+  let descX = 50;
+  let descY = 870;
+  let tpsX = 55;
+  let tpsY = 100;
+  let resetButtonX = 50;
+  let resetButtonY = 330;
+  let bigCircleX = 800;
+  let bigCircleY = 300
+  let descLength = 300;
+  let descHeight = 300;
+  let imageX = 50;
+  let imageY = 630;
   let backgroundImage;
   let imageLength = 300;
   let imageHeight = 220;
@@ -98,7 +104,7 @@ p.mouseClicked = function(){
     if (paraPara == false) paraPara = true;
     else paraPara = false;
   }
-  if(p.mouseX <= 650 + 20 && p.mouseX >= 650 && p.mouseY <= 920 + 20 && p.mouseY >= 920) resetFoodWeb();
+  if(p.mouseX <= resetButtonX + 10 && p.mouseX >= resetButtonX && p.mouseY <= resetButtonY + 10 && p.mouseY >= resetButtonY) resetFoodWeb();
   setFoodChainIndex(p.mouseX, p.mouseY);
 }
 
@@ -113,7 +119,7 @@ p.draw = function()
   p.background(255);
   p.fill(255,255,255);
   p.stroke(0);
-  p.ellipse(725, 475, bigCircleDia, bigCircleDia)
+  p.ellipse(bigCircleX, bigCircleY, bigCircleDia, bigCircleDia)
   p.textSize(15);
   p.fill(0);
   p.noStroke();
@@ -142,13 +148,11 @@ p.draw = function()
    p.fill(153,153,153);
    p.text("parasite-parasite", buttonX + 13, buttonY + 70);
    //reset button
-   p.rect(650,920,20,20);
+   p.rect(resetButtonX, resetButtonY, 10, 10);
    p.fill(0);
-   p.text("Reset the food web", 650 + 25, 935);
+   p.text("Reset the food web", resetButtonX + 13, resetButtonY + 10);
 
    
-   var tpsX = 55;
-   var tpsY = 250;
    p.fill(102,194,165); p.circle(tpsX, tpsY, 15);
    p.fill(1252,141,98); p.circle(tpsX, tpsY + 20, 15);
    p.fill(141,160,203); p.circle(tpsX, tpsY + 40, 15);
@@ -161,9 +165,10 @@ p.draw = function()
    p.text("Freeliving", tpsX + 10, tpsY + 25);
    p.text("Parasite", tpsX+10, tpsY+45);
    
-   
-   
-   p.text("Connectance: " + connectance, 650, 980);
+   popOutName(p.mouseX, p.mouseY);
+   p.textSize(16);
+
+   p.text("Connectance: " + connectance, resetButtonX, resetButtonY - 15);
 
    for(let i = 0; i < speciesNum; i++){
      if (allSpecies[i].getStatus()) drawFoodWeb(i);
@@ -176,14 +181,6 @@ p.draw = function()
  
 }
 function drawFoodWeb(i){
-   // int t=i;
-   // pushMatrix();
-   // fill(0);
-   // textSize(10);
-   // rotate(t*PI/64);
-   // translate(allSpecies.get(t).getXNum()*cos(t*PI/64)+allSpecies.get(t).getYNum()*sin(t*PI/64), -allSpecies.get(t).getXNum()*sin(t*PI/64)+allSpecies.get(t).getYNum()*cos(t*PI/64)+3);
-   // text(allSpecies.get(t).getName(), 0,0);
-   // popMatrix();
    let first = allSpecies[i];
    first.drawShape();
    let c = first.getColor();
@@ -439,14 +436,14 @@ function drawFoodChains(index){
       p.textSize(9);
       let printName = allSpecies[temp[4]].getName().split(" ");
       for(let i = 0; i < printName.length ; i++){
-        p.text(printName[i], temp[0] - 10 , temp[1] + 18 + 8*  i);
+        p.text(printName[i], temp[0] - 10 , temp[1] + 18 + 8 * i);
       }
     }
   }
    p.textAlign(p.LEFT);
    p.textSize(18);
    let curName = curS.getName()
-   p.text(curName, 1400, 825);
+   p.text(curName, imageX, imageY - 20);
    // img = curS.getImg();
    // image(img, 1100, 810,300,220);
    // textSize(15);
@@ -481,6 +478,23 @@ function setFoodChainIndex(x, y){
   }
 }
 
+function popOutName(x, y){
+  for(let i = 0; i < speciesNum; i++){
+    s = allSpecies[i];
+    if(x < s.getXCor() + s.getDia()/2 && x > s.getXCor() - s.getDia()/2 
+    && y > s.getYCor() - s.getDia()/2 && y < s.getYCor() + s.getDia()/2 ){      
+      let curName = s.getName();
+      if(x < bigCircleX){
+        p.text(curName, x - 120, y + 20);
+        return;
+      }
+      else{
+        p.text(curName, x + 10, y + 20);
+        return;
+      }
+    }
+  }
+}
 
 function deleteFoodChainIndex(x, y){
     for(let i = 0; i < speciesNum; i++){
@@ -509,10 +523,10 @@ class Species {
         else this.relations.push(speciesRow.getNum(i));
       }
       this.diameter = (bigCircleDia * Math.PI / this.speciesNum);
-      this.xCor = (725.0 + p.cos(p.radians(this.index * this.interval)) * bigCircleDia / 2.0);
-      this.yCor = (475.0 + p.sin(p.radians(this.index * this.interval)) * bigCircleDia / 2.0);
-      this.xNum = (725.0 + p.cos(p.radians(this.index * this.interval)) * (bigCircleDia / 2.0 + 10));
-      this.yNum = (475.0 + p.sin(p.radians(this.index * this.interval)) * (bigCircleDia / 2.0 + 10));
+      this.xCor = (bigCircleX + p.cos(p.radians(this.index * this.interval)) * bigCircleDia / 2.0);
+      this.yCor = (bigCircleY + p.sin(p.radians(this.index * this.interval)) * bigCircleDia / 2.0);
+      this.xNum = (bigCircleX + p.cos(p.radians(this.index * this.interval)) * (bigCircleDia / 2.0 + 10));
+      this.yNum = (bigCircleY + p.sin(p.radians(this.index * this.interval)) * (bigCircleDia / 2.0 + 10));
       if (this.type == "Basal") this.c = p.color(102,194,165);
       // If type is Freeliving, set the color to Spring Green1.
       else if (this.type == "Freeliving") this.c = p.color(252,141,98);
