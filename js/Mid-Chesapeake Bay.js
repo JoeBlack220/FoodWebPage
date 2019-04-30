@@ -48,7 +48,7 @@ let sketch = function (p){
 
 // Initialises the data and bar chart.
 p.preload = function(){
-  matrix = p.loadTable('/data/Mid-Chesapeake Bay/Mid-Chesapeake Bay.csv', 'csv');
+  matrix = p.loadTable('./data/Mid-Chesapeake Bay/Mid-Chesapeake Bay.csv', 'csv');
 }
 
 p.setup = function(){
