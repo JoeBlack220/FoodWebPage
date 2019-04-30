@@ -171,7 +171,7 @@ p.draw = function()
    drawFoodChains(foodChainIndex);
    p.tint(255, 50);
    p.image(backgroundImage,0,0,canvasX,canvasY);
-      p.tint(255, 255);
+   p.tint(255, 255);
 
  
 }
