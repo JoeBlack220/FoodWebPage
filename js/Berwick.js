@@ -56,7 +56,7 @@ let sketch = function (p){
 // Initialises the data and bar chart.
 p.preload = function(){
   matrix = p.loadTable('./data/Berwick/Berwick.csv', 'csv');
-  backgroundImage = p.loadImage('./data/carpinteria/back.jpg');
+  backgroundImage = p.loadImage('./data/Berwick/back.jpg');
 }
 
 p.setup = function(){
