@@ -572,7 +572,3 @@ class Species {
 }
 
 }
-
-function drawANew(){
-  let myp5 = new p5(sketch);
-}

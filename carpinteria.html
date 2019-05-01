@@ -42,11 +42,15 @@
 
 
     </nav>
-    <div class="superfoodweb">
-      <img src="./data/introduction/pics/lakefoodweb.png" alt="A image" />
-    </div>​
-    <div class="superfoodweb">
-      <img src="./data/introduction/pics/lakespecies.png" alt="A image" />
-    </div>​
+  <div id="sketchContainer">
+    <span id="2Dsketch">      
+    </span>
+    <span id="3Dsketch">      
+    </span>
+    <script type="text/javascript">
+      new p5(sketch, window.document.getElementById('2Dsketch'));
+      new p5(sketch3D, window.document.getElementById('3Dsketch'))
+    </script>
+  </div>
   </body>
 </html>
