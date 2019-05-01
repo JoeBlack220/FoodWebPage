@@ -480,13 +480,18 @@ function popOutName(x, y){
     && y > s.getYCor() - s.getDia()/2 && y < s.getYCor() + s.getDia()/2 ){      
       let curName = s.getName();
       if(x < bigCircleX){
-        p.text(curName, x - 120, y + 20);
-        return;
+        x -= 140;      }
+      else{
+        x += 40;
+      }
+      if(y > bigCircleY){
+        y += 30;
       }
       else{
-        p.text(curName, x + 10, y + 20);
-        return;
+        y -= 30;
       }
+      p.text(curName, x , y );
+
     }
   }
 }
