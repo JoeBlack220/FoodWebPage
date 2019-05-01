@@ -8,47 +8,48 @@
     <script src="./js/carpinteria.js"></script>
     <script src="./js/3Dcarpinteria.js"></script>    
     <script src="./js/jquery-3.4.0.js"></script>    
+    <script src="./js/bootstrap.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 
   <title>Food Web Visualization</title>
   </head>
   <body>
-  <header>
-    <nav class="navbar navbar-expand-lg" id="nav1">
-      <div class="container">
+    <nav class="navbar navbar-expand navbar-light"  style="background-color: #e5f5e0;">
+      <a class="navbar-brand" href="#">Explore the food web</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-          <a href="index.html" class="float-left d-none d-lg-block">
-            <div id="logo-img"></div>
-          </a>
+      <div class="collapse navbar-collapse" id="navbarsExample02">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="test.html"> Introduction <span class="sr-only">(current)</span></a>
+          </li>
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ecosystem</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown04">
+          <a class="dropdown-item" href="#">Carpinteria</a>
+          <a class="dropdown-item" href="#">another ecosystem</a>
+          <a class="dropdown-item" href="#">another ecosystem</a>
+        </div>
+      </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#"> Energy </a>
+          </li>
+        </ul>
+      </div>
 
-          <div class="navbar-brand">
-            <a href="index.html"><h1>Food Web Visualization</h1></a>
-          </div>
-        <div id="collapsable-nav" class="collapse navbar-collapse ">
-           <ul id="nav-list" class="nav navbar-nav navbar-right">
-            <li class="nav-item">
-              <a href="index.html">
-                <span class="glyphicon glyphicon-cutlery"></span><br class="hidden-xs"> Carpinteria </a>
-            </li>
-            <li class="nav-item">
-              <a href="test.html">
-                <span class="glyphicon glyphicon-info-sign"></span><br class="hidden-xs"> Mid-Chesapeake Bay</a>
-            </li>
-            <li class="nav-item">
-              <a href="#">
-                <span class="glyphicon glyphicon-certificate"></span><br class="hidden-xs"> Other </a>
-            </li>
-          </ul><!-- #nav-list -->
-        </div><!-- .collapse .navbar-collapse -->
-      </div><!-- .container -->
-    </nav><!-- #header-nav -->
 
-  </header>
+    </nav>
   <div id="sketchContainer">
+    <span id="2Dsketch">      
+    </span>
+    <span id="3Dsketch">      
+    </span>
     <script type="text/javascript">
-      new p5(sketch, window.document.getElementById('sketchContainer'));
-      new p5(sketch3D, window.document.getElementById('sketchContainer'))
+      new p5(sketch, window.document.getElementById('2Dsketch'));
+      new p5(sketch3D, window.document.getElementById('3Dsketch'))
     </script>
   </div>
   </body>
