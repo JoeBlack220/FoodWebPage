@@ -26,11 +26,11 @@ let sketch = function (p){
   let foodChainIndex = 40;
   let descImage;
   let descX = 50;
-  let descY = 870;
+  let descY = 470;
   let tpsX = 55;
   let tpsY = 100;
   let resetButtonX = 50;
-  let resetButtonY = 330;
+  let resetButtonY = 830;
   let ecoInfoX = 370;
   let ecoInfoY = 10;
   let bigCircleX = 800;
@@ -38,7 +38,7 @@ let sketch = function (p){
   let descLength = 300;
   let descHeight = 300;
   let imageX = 50;
-  let imageY = 630;
+  let imageY = 230;
   let backgroundImage;
   let imageLength = 300;
   let imageHeight = 220;
@@ -182,9 +182,10 @@ p.draw = function()
    p.image(backgroundImage,0,0,canvasX,canvasY);
    p.tint(255, 255);
    p.stroke(0);
-   p.line(imageX - 10, imageY - 50,imageX - 10, imageY + 500);
+   p.line(imageX - 10, imageY - 50,imageX - 10, imageY + 450);
    p.line(imageX - 10, imageY - 50,imageX + 310, imageY - 50);
-   p.line(imageX + 310, imageY - 50,imageX + 310, imageY + 500);
+   p.line(imageX + 310, imageY - 50,imageX + 310, imageY + 450);
+   p.line(imageX + 310, imageY + 450, imageX - 10, imageY + 450);   
    p.line(foodChainX - 350, foodChainY - 200, foodChainX - 350, foodChainY + 200);
    p.line(foodChainX + 350, foodChainY - 200, foodChainX + 350, foodChainY + 200);
    p.line(foodChainX - 350, foodChainY - 200, foodChainX + 350, foodChainY - 200); 

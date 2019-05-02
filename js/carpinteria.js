@@ -16,7 +16,7 @@ let sketch = function (p){
   let predHost = true;
   let paraPara = true;
   let buttonX = 50;
-  let buttonY = 200;
+  let buttonY = 720;
   let canvasX = 1200;
   let canvasY = 1080;
   let foodChainX = 800;
@@ -26,11 +26,11 @@ let sketch = function (p){
   let foodChainIndex = 40;
   let descImage;
   let descX = 50;
-  let descY = 870;
+  let descY = 470;
   let tpsX = 55;
   let tpsY = 100;
   let resetButtonX = 50;
-  let resetButtonY = 330;
+  let resetButtonY = 850;
   let ecoInfoX = 370;
   let ecoInfoY = 10;
   let bigCircleX = 800;
@@ -38,7 +38,7 @@ let sketch = function (p){
   let descLength = 300;
   let descHeight = 300;
   let imageX = 50;
-  let imageY = 630;
+  let imageY = 230;
   let backgroundImage;
   let imageLength = 300;
   let imageHeight = 220;
@@ -183,13 +183,15 @@ p.draw = function()
    p.tint(255, 255);
    p.stroke(0);
    // draw the outline of the description
-   p.line(imageX - 10, imageY - 50,imageX - 10, imageY + 500);
+   p.line(imageX - 10, imageY - 50,imageX - 10, imageY + 450);
    p.line(imageX - 10, imageY - 50,imageX + 310, imageY - 50);
-   p.line(imageX + 310, imageY - 50,imageX + 310, imageY + 500);
+   p.line(imageX + 310, imageY - 50,imageX + 310, imageY + 450);
+   p.line(imageX + 310, imageY + 450, imageX - 10, imageY + 450);   
    // draw the outline of the food chain
    p.line(foodChainX - 350, foodChainY - 200, foodChainX - 350, foodChainY + 200);
    p.line(foodChainX + 350, foodChainY - 200, foodChainX + 350, foodChainY + 200);
    p.line(foodChainX - 350, foodChainY - 200, foodChainX + 350, foodChainY - 200);
+
    p.text("Ecosystem Name: Carpinteria, Location: California, USA",ecoInfoX, ecoInfoY+20);
    p.text("Type: Salt Marsh, Total links: 2290, Total species: 128",ecoInfoX, ecoInfoY+45);
    p.line(ecoInfoX - 10 , ecoInfoY, ecoInfoX- 10 , ecoInfoY + 120);
