@@ -168,7 +168,7 @@ p.draw = function()
    popOutName(p.mouseX, p.mouseY);
    p.textSize(16);
 
-   p.text("Connectance: " + connectance, resetButtonX, resetButtonY - 15);
+   p.text("Connectance: " + connectance.toFixed(3), resetButtonX, resetButtonY - 15);
 
    for(let i = 0; i < speciesNum; i++){
      if (allSpecies[i].getStatus()) drawFoodWeb(i);
@@ -479,6 +479,7 @@ function popOutName(x, y){
     if(x < s.getXCor() + s.getDia()/2 && x > s.getXCor() - s.getDia()/2 
     && y > s.getYCor() - s.getDia()/2 && y < s.getYCor() + s.getDia()/2 ){      
       let curName = s.getName();
+      p.circle(s.xCor, s.yCor, s.diameter + 5);
       if(x < bigCircleX){
         x -= 140;      }
       else{

@@ -479,6 +479,7 @@ function popOutName(x, y){
     if(x < s.getXCor() + s.getDia()/2 && x > s.getXCor() - s.getDia()/2 
     && y > s.getYCor() - s.getDia()/2 && y < s.getYCor() + s.getDia()/2 ){      
       let curName = s.getName();
+      p.circle(s.xCor, s.yCor, s.diameter + 5);
       if(x < bigCircleX){
         x -= 140;      }
       else{

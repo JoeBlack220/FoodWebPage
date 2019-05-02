@@ -42,8 +42,8 @@ let sketch3D = function (p){
    p.background(255); 
    p.stroke(255); 
    p.noStroke();
-   p.directionalLight(255, 255, 255,  1, -0.5, -0.5);
-   
+   p.directionalLight(150, 150, 150,  1, -0.5, -0.5);
+   p.directionalLight(150, 150, 150,  0, 0, -0.5);
    // add camera interaction
     var minDist = 200.0;
     var maxDist = 1500.0;
@@ -60,7 +60,7 @@ let sketch3D = function (p){
     var t = (p.int(s/2))%8;
     for (let i=0; i<speciesNum; i++){
       p.noStroke();
-      allSpecies[i].fillColor();
+      allSpecies[i].fillColor(255);
       p.push();
       p.translate(allSpecies[i].getX(), allSpecies[i].getY(), allSpecies[i].getZ());
       p.sphere(20);
@@ -87,7 +87,7 @@ let sketch3D = function (p){
               p.vertex(allSpecies[j].getX(), allSpecies[j].getY(), allSpecies[j].getZ());
               p.endShape();
             }
-            allSpecies[i].fillColor();
+            allSpecies[i].fillColor(50);
             p.push();
             p.translate(0, 0, allSpecies[i].getZ());
             p.circle(0, 0, 700);
@@ -151,28 +151,28 @@ let sketch3D = function (p){
       }
     }
 
-    fillColor(){
+    fillColor(alpha){
       switch (this.level){
         case 1.0:
-          p.fill(179,222,105);
+          p.fill(179,222,105, alpha);
           break;
         case 2.0:
-          p.fill(253,180,98);
+          p.fill(253,180,98, alpha);
           break;
         case 3.0:
-          p.fill(128,177,211);
+          p.fill(128,177,211, alpha);
           break;
         case 4.0:
-          p.fill(251,128,114);
+          p.fill(251,128,114, alpha);
           break;
         case 5.0:
-          p.fill(190,186,218);
+          p.fill(190,186,218, alpha);
           break;
         case 6.0:
-          p.fill(255,255,179);
+          p.fill(255,255,179, alpha);
           break;
         case 7.0:
-          p.fill(141,211,199);
+          p.fill(141,211,199, alpha);
           break;
       }
     }
