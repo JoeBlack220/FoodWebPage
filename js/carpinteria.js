@@ -17,12 +17,12 @@ let sketch = function (p){
   let paraPara = true;
   let buttonX = 50;
   let buttonY = 200;
-  let canvasX = 1300;
+  let canvasX = 1200;
   let canvasY = 1080;
   let foodChainX = 800;
   let foodChainY = 900;
   let foodChainRadius = 20;
-  let foodChainLine = 200;
+  let foodChainLine = 150;
   let foodChainIndex = 40;
   let descImage;
   let descX = 50;
@@ -168,7 +168,7 @@ p.draw = function()
    popOutName(p.mouseX, p.mouseY);
    p.textSize(16);
 
-   p.text("Connectance: " + connectance, resetButtonX, resetButtonY - 15);
+   p.text("Connectance: " + connectance.toFixed(4), resetButtonX, resetButtonY - 15);
 
    for(let i = 0; i < speciesNum; i++){
      if (allSpecies[i].getStatus()) drawFoodWeb(i);
