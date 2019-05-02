@@ -31,6 +31,8 @@ let sketch = function (p){
   let tpsY = 100;
   let resetButtonX = 50;
   let resetButtonY = 330;
+  let ecoInfoX = 50;
+  let ecoInfoY = 400;
   let bigCircleX = 800;
   let bigCircleY = 300
   let descLength = 300;
@@ -42,6 +44,7 @@ let sketch = function (p){
   let imageHeight = 220;
   let totalNum;
   let descLines;
+  let infoLines;
   // color for basal, freeliving and parasite
 
   let connectance;
@@ -65,6 +68,7 @@ p.setup = function(){
   let speciesColor1 = p.color(102,194,165);
   let speciesColor2 = p.color(252,141,98);
   let speciesColor3 = p.color(141,160,203);
+  infoLines = "A forest of pine trees. Pine forests usually occur on dry slopes so needles that fall under the trees decompose very slowly. This thick layer of pine needles is another factor that reduces the understory vegetation. "
   // Load the data table.
   // The first row of the table saves all the name of species in the food web.
   // Extract them all and save them in a String array.
@@ -184,6 +188,15 @@ p.draw = function()
    p.line(foodChainX - 300, foodChainY - 200, foodChainX - 300, foodChainY + 200);
    p.line(foodChainX + 300, foodChainY - 200, foodChainX + 300, foodChainY + 200);
    p.line(foodChainX - 300, foodChainY - 200, foodChainX + 300, foodChainY - 200); 
+   p.line(ecoInfoX - 10 , ecoInfoY, ecoInfoX- 10 , ecoInfoY + 150);
+   p.line(ecoInfoX - 10, ecoInfoY, ecoInfoX + 500, ecoInfoY);
+   p.line(ecoInfoX + 500 , ecoInfoY, ecoInfoX + 500, ecoInfoY + 150);
+   p.line(ecoInfoX - 10, ecoInfoY + 150, ecoInfoX + 500, ecoInfoY + 150);
+   p.text("Ecosystem Name: Berwick, Location: Otago, New Zealand",ecoInfoX, ecoInfoY+20)
+   p.text("Type: Pine Forest, Total links: 217, Total species: 77",ecoInfoX, ecoInfoY+45)
+   p.text(infoLines, ecoInfoX, ecoInfoY + 60, 500, 150);
+
+
 }
 function drawFoodWeb(i){
    let first = allSpecies[i];

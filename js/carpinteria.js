@@ -5,7 +5,7 @@ let sketch = function (p){
   let allSpeciesName = [];
   let speciesNum;
   let allSpecies = [];
-  let bigCircleDia = 600;
+  let bigCircleDia = 500;
   let interval;
   let last;
   let bigCircle;
@@ -31,8 +31,10 @@ let sketch = function (p){
   let tpsY = 100;
   let resetButtonX = 50;
   let resetButtonY = 330;
+  let ecoInfoX = 50;
+  let ecoInfoY = 400;
   let bigCircleX = 800;
-  let bigCircleY = 350
+  let bigCircleY = 300
   let descLength = 300;
   let descHeight = 300;
   let imageX = 50;
@@ -42,11 +44,12 @@ let sketch = function (p){
   let imageHeight = 220;
   let totalNum;
   let descLines;
+  let infoLines;
   // color for basal, freeliving and parasite
 
   let connectance;
   let preyCor = []; 
-  let predatorCor = []; 
+  let predatorCor = [];
 // ------------------------ Initialisation --------------------------
 
 // Initialises the data and bar chart.
@@ -65,6 +68,7 @@ p.setup = function(){
   let speciesColor1 = p.color(102,194,165);
   let speciesColor2 = p.color(252,141,98);
   let speciesColor3 = p.color(141,160,203);
+  infoLines="A salt marsh or saltmarsh, also known as a coastal salt marsh or a tidal marsh, is a coastal ecosystem in the upper coastal intertidal zone between land and open saltwater or brackish water that is regularly flooded by the tides. It is dominated by dense stands of salt-tolerant plants such as herbs, grasses, or low shrubs."
   // Load the data table.
   // The first row of the table saves all the name of species in the food web.
   // Extract them all and save them in a String array.
@@ -186,8 +190,16 @@ p.draw = function()
    p.line(foodChainX - 300, foodChainY - 200, foodChainX - 300, foodChainY + 200);
    p.line(foodChainX + 300, foodChainY - 200, foodChainX + 300, foodChainY + 200);
    p.line(foodChainX - 300, foodChainY - 200, foodChainX + 300, foodChainY - 200);
-
+   p.line(ecoInfoX - 10 , ecoInfoY, ecoInfoX- 10 , ecoInfoY + 150);
+   p.line(ecoInfoX - 10, ecoInfoY, ecoInfoX + 500, ecoInfoY);
+   p.line(ecoInfoX + 500 , ecoInfoY, ecoInfoX + 500, ecoInfoY + 150);
+   p.line(ecoInfoX - 10, ecoInfoY + 150, ecoInfoX + 500, ecoInfoY + 150);
+   p.text("Ecosystem Name: Carpinteria, Location: California, USA",ecoInfoX, ecoInfoY+20);
+   p.text("Type: Salt Marsh, Total links: 2290, Total species: 128",ecoInfoX, ecoInfoY+45);
+   p.text(infoLines, ecoInfoX, ecoInfoY + 60, 500, 150);
+ 
 }
+
 function drawFoodWeb(i){
    let first = allSpecies[i];
    first.drawShape();
@@ -283,6 +295,7 @@ function computeConnectance(){
     }
   }
   connectance = (link / (Math.pow(S, 2) - (ppba)*S + S - ppba + pr*ppba));
+
 }
 
 function compFoodChainPrey(rela, x, y, level){
