@@ -31,10 +31,10 @@ let sketch = function (p){
   let tpsY = 100;
   let resetButtonX = 50;
   let resetButtonY = 330;
-  let ecoInfoX = 50;
-  let ecoInfoY = 400;
+  let ecoInfoX = 370;
+  let ecoInfoY = 10;
   let bigCircleX = 800;
-  let bigCircleY = 300
+  let bigCircleY = 400
   let descLength = 300;
   let descHeight = 300;
   let imageX = 50;
@@ -186,16 +186,16 @@ p.draw = function()
    p.line(imageX - 10, imageY - 50,imageX - 10, imageY + 500);
    p.line(imageX - 10, imageY - 50,imageX + 310, imageY - 50);
    p.line(imageX + 310, imageY - 50,imageX + 310, imageY + 500);
-   p.line(foodChainX - 300, foodChainY - 200, foodChainX - 300, foodChainY + 200);
-   p.line(foodChainX + 300, foodChainY - 200, foodChainX + 300, foodChainY + 200);
-   p.line(foodChainX - 300, foodChainY - 200, foodChainX + 300, foodChainY - 200);
-   p.line(ecoInfoX - 10 , ecoInfoY, ecoInfoX- 10 , ecoInfoY + 150);
-   p.line(ecoInfoX - 10, ecoInfoY, ecoInfoX + 500, ecoInfoY);
-   p.line(ecoInfoX + 500 , ecoInfoY, ecoInfoX + 500, ecoInfoY + 150);
-   p.line(ecoInfoX - 10, ecoInfoY + 150, ecoInfoX + 500, ecoInfoY + 150);
-   p.text("Ecosystem Name: Baja California, Location: Mexico",ecoInfoX, ecoInfoY+20)
-   p.text("Type: Ocean, Total links: 971, Total species: 120",ecoInfoX, ecoInfoY+45)
-   p.text(infoLines, ecoInfoX, ecoInfoY + 60, 500, 150);
+   p.line(foodChainX - 350, foodChainY - 200, foodChainX - 350, foodChainY + 200);
+   p.line(foodChainX + 350, foodChainY - 200, foodChainX + 350, foodChainY + 200);
+   p.line(foodChainX - 350, foodChainY - 200, foodChainX + 350, foodChainY - 200);
+   p.text("Ecosystem Name: Baja California, Location: Mexico",ecoInfoX, ecoInfoY+20);
+   p.text("Type: Ocean, Total links: 971, Total species: 120",ecoInfoX, ecoInfoY+45);
+   p.line(ecoInfoX - 10 , ecoInfoY, ecoInfoX- 10 , ecoInfoY + 120);
+   p.line(ecoInfoX - 10, ecoInfoY, ecoInfoX + 800, ecoInfoY);
+   p.line(ecoInfoX + 800 , ecoInfoY, ecoInfoX + 800, ecoInfoY + 120);
+   p.line(ecoInfoX - 10, ecoInfoY + 120, ecoInfoX + 800, ecoInfoY + 120);
+   p.text(infoLines, ecoInfoX, ecoInfoY + 60, 800, 150);
  
 }
 function drawFoodWeb(i){
