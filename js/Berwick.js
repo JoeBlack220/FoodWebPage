@@ -177,8 +177,13 @@ p.draw = function()
    p.tint(255, 50);
    p.image(backgroundImage,0,0,canvasX,canvasY);
    p.tint(255, 255);
-
- 
+   p.stroke(0);
+   p.line(imageX - 10, imageY - 50,imageX - 10, imageY + 500);
+   p.line(imageX - 10, imageY - 50,imageX + 310, imageY - 50);
+   p.line(imageX + 310, imageY - 50,imageX + 310, imageY + 500);
+   p.line(foodChainX - 300, foodChainY - 200, foodChainX - 300, foodChainY + 200);
+   p.line(foodChainX + 300, foodChainY - 200, foodChainX + 300, foodChainY + 200);
+   p.line(foodChainX - 300, foodChainY - 200, foodChainX + 300, foodChainY - 200); 
 }
 function drawFoodWeb(i){
    let first = allSpecies[i];
@@ -395,7 +400,7 @@ function drawFoodChains(index){
   p.textSize(9);
   p.text(curS.getName(), foodChainX, foodChainY + 15);
   p.textSize(18);
-  p.text("Food chains around " + curS.getName() + ".", foodChainX, foodChainY - 250);
+  p.text("Food chains around " + curS.getName() + ".", foodChainX, foodChainY - 175);
   p.textSize(12);
   for(let i = 0; i < preyCor.length; i++){
     let curSpecies = preyCor[i];
@@ -479,7 +484,7 @@ function popOutName(x, y){
     if(x < s.getXCor() + s.getDia()/2 && x > s.getXCor() - s.getDia()/2 
     && y > s.getYCor() - s.getDia()/2 && y < s.getYCor() + s.getDia()/2 ){      
       let curName = s.getName();
-      p.circle(s.xCor, s.yCor, s.diameter + 5);
+    if(s.activated) p.circle(s.xCor, s.yCor, s.diameter + 5);
       if(x < bigCircleX){
         x -= 140;      }
       else{
