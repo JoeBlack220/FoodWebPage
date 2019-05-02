@@ -75,3 +75,9 @@ a:hover {
 	margin-right: auto;
 	width: 1300px;
 }
+#matrixContainer{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1400px;
+}

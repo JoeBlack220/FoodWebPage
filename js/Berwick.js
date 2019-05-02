@@ -299,7 +299,7 @@ function compFoodChainPrey(rela, x, y, level){
   let ret = [];
   let size = 0;
   // set the maximum number of a level for clearance
-  let max = 3;
+  let max = 2;
   // rescale the length of a food chain for readibility
   if (level != 1) level = level / 3 * 2;
   let radius = foodChainLine / level ;
@@ -331,7 +331,7 @@ function compFoodChainPredator(index, x, y, level){
   let curRela;
   let size = 0;
   // set the maximum number of a level for clearance
-  let max = 3;
+  let max = 2;
   // use level to rescale the length of the food chain
   if (level != 1) level = level / 3 * 2;
   let radius = foodChainLine / level ;
@@ -410,7 +410,7 @@ function drawFoodChains(index){
   p.ellipse(foodChainX, foodChainY, foodChainRadius, foodChainRadius);
   p.fill(50);
   p.textAlign(p.CENTER);
-  p.textSize(9);
+  p.textSize(12);
   p.text(curS.getName(), foodChainX, foodChainY + 15);
   p.textSize(18);
   p.text("Food chains around " + curS.getName() + ".", foodChainX, foodChainY - 175);
@@ -427,10 +427,10 @@ function drawFoodChains(index){
       p.ellipse(temp[0], temp[1], foodChainRadius, foodChainRadius);
       p.fill(50);
       p.textAlign(p.LEFT);
-      p.textSize(9);
+      p.textSize(12);
       let printName = allSpecies[temp[4]].getName().split(" ");
       for(let i = 0; i < printName.length ; i++){
-        p.text(printName[i], temp[0] - 10 , temp[1] + 18 + 8*  i);
+        p.text(printName[i], temp[0] - 10 , temp[1] + 18 + 12 *  i);
       }
     }
   }
@@ -446,10 +446,10 @@ function drawFoodChains(index){
       p.ellipse(temp[0], temp[1], foodChainRadius, foodChainRadius);
       p.fill(50);
       p.textAlign(p.RIGHT);
-      p.textSize(9);
+      p.textSize(12);
       let printName = allSpecies[temp[4]].getName().split(" ");
       for(let i = 0; i < printName.length ; i++){
-        p.text(printName[i], temp[0] - 10 , temp[1] + 18 + 8 * i);
+        p.text(printName[i], temp[0] - 10 , temp[1] + 18 + 12 * i);
       }
     }
   }
