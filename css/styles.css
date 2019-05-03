@@ -85,5 +85,12 @@ a:hover {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+	width: 1000px;
+}
+
+#matrixContainer2{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 	width: 1400px;
 }

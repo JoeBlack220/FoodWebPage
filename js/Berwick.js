@@ -72,7 +72,7 @@ p.setup = function(){
   // Load the data table.
   // The first row of the table saves all the name of species in the food web.
   // Extract them all and save them in a String array.
-  speciesNum = matrix.getRowCount() - 2;
+  speciesNum = matrix.getRowCount() - 1;
   columnNum = matrix.getColumnCount();
   row0 = matrix.getRow(0);
   for (let i = 2; i < columnNum; i++){
@@ -536,7 +536,7 @@ class Species {
     this.speciesNum = total;
     this.relations = [];
     this.activated = true;
-    this.interval = 360.0/(columnNum - 3);
+    this.interval = 360.0/(columnNum - 2);
     for(let i = 0; i < columnNum ; i++){
         if(i == 0) this.type = speciesRow.getString(i);
         else if(i == 1) this.name = speciesRow.getString(i);
