@@ -39,10 +39,10 @@
         </ul>
       </div>
     </nav>
-  <div class="jumpertest">
+  <div id="sketchContainer">
+      <div class="jumpertest">
     <a href="#matrixContainer2" class="jumper">Click here to see the relation matrix</a>
   </div>  
-  <div id="sketchContainer">
     <span id="2Dsketch">      
     </span>
     <span id="3Dsketch">      
@@ -51,9 +51,12 @@
       new p5(sketch, window.document.getElementById('2Dsketch'));
       new p5(sketch3D, window.document.getElementById('3Dsketch'))
     </script>
-  </div>
+  </div> 
   <div id="matrixContainer2">
+        <div class="jumpertest">
+    <a href="#sketchContainer" class="jumper">Go Back to the food web model</a>
+  </div> 
     <img src="./data/carpinteria/matrix.jpg" width="1400" height="900">
-  </div>
+  </div> 
   </body>
 </html>
