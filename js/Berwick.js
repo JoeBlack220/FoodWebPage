@@ -194,7 +194,7 @@ p.draw = function()
    p.line(foodChainX + 350, foodChainY - 200, foodChainX + 350, foodChainY + 200);
    p.line(foodChainX - 350, foodChainY - 200, foodChainX + 350, foodChainY - 200);  
    p.text("Ecosystem Name: Baja California, Location: Mexico",ecoInfoX, ecoInfoY+20);
-   p.text("Type: Ocean, Total links: 971, Total species: 120, Connectance:0.067",ecoInfoX, ecoInfoY+45);
+   p.text("Type: Pine Forest, Total links: 971, Total species: 120, Connectance:0.067",ecoInfoX, ecoInfoY+45);
    p.line(ecoInfoX - 10 , ecoInfoY, ecoInfoX- 10 , ecoInfoY + 120);
    p.line(ecoInfoX - 10, ecoInfoY, ecoInfoX + 800, ecoInfoY);
    p.line(ecoInfoX + 800 , ecoInfoY, ecoInfoX + 800, ecoInfoY + 120);
