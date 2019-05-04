@@ -94,3 +94,18 @@ a:hover {
 	margin-right: auto;
 	width: 1400px;
 }
+
+#energyP{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 800px;
+}
+
+.description2{
+	font-size: 20px;
+	margin-top: 10px
+}
+.descpara{
+	padding: 9px;
+}

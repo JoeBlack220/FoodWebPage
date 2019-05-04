@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="./js/p5/p5.js"></script>
-    <script src="./js/Berwick.js"></script>
-    <script src="./js/Berwick3D.js"></script>    
+    <script src="./js/energy.js"></script>
     <script src="./js/jquery-3.4.0.js"></script>    
     <script src="./js/bootstrap.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -15,11 +14,12 @@
   <title>Food Web Visualization</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand navbar-light" style="background-color: #e5f5e0;">
+    <nav class="navbar navbar-expand navbar-light"  style="background-color: #e5f5e0;">
       <span class="navbar-brand">Explore the food web</span>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarsExample02">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
@@ -39,25 +39,27 @@
         </ul>
       </div>
     </nav>
-
-  <div id="sketchContainer">
-      <div class="jumpertest">
-    <a href="#matrixContainer" class="jumper">Click here to see the relation matrix</a>
-  </div>  
-    <span id="2Dsketch">      
-    </span>
-    <span id="3Dsketch">      
-    </span>
+    <div class="definition" id="definition1">
+      <div class="term">
+        Energy Pyramid
+      </div>
+      <div class="description2">
+        1. An energy pyramid is a presentation of the trophic levels in an ecosystem. Energy from the sun is transferred through the ecosystem by passing through various trophic levels. Roughly 10% of the energy is transferred from one trophic level to the next, thus preventing a large number of trophic levels. There must be higher amounts of biomass at the bottom of the pyramid to support the energy and biomass requirements of the higher trophic levels.
+      </div>
+        <div class="description2">
+        2. When plastic is part of the food chain:
+        <div class="descpara">
+        Microplastics are plastic pieces smaller than 5 mm. This can include extremely small plastic pieces used in household products, clothing fibres and large plastic pieces that degrade into smaller fragments.
+        </div>
+        <div class="descpara">
+        Microplastics can accumulate in fish, birds and other marine life. Because they do not break down rapidly, the amount in the sea and fish will continue to accumulate, making the problem worse over time, until we manage to reduce the amount of plastic in the sea.
+      </div>        
+      </div>
+    </div>
+    <div id="energyP">
     <script type="text/javascript">
-      new p5(sketch, window.document.getElementById('2Dsketch'));
-      new p5(sketch3D, window.document.getElementById('3Dsketch'))
+      new p5(sketch, window.document.getElementById('energyP'));
     </script>
-  </div>
-  <div id="matrixContainer">
-  <div class="jumpertest">
-    <a href="#sketchContainer" class="jumper">Go Back to the food web model</a>
-  </div> 
-    <img src="./data/Berwick/matrix.jpg" width="1000" height="900">
-  </div>
+    </div>
   </body>
 </html>
