@@ -143,7 +143,7 @@ class Species{
     this.r = r;
     this.xCor = p.float(p.cos(p.radians(angle))*350);
     this.yCor = p.float(p.sin(p.radians(angle))*350);
-    this.zCor = p.float(level*200-400);
+    this.zCor = p.float(level*100-500);
     this.c = getColor(level);
   }
 

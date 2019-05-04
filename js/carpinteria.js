@@ -45,6 +45,8 @@ let sketch = function (p){
   let totalNum;
   let descLines;
   let infoLines;
+  let showLink;
+  let showS;
   // color for basal, freeliving and parasite
 
   let connectance;
@@ -108,7 +110,7 @@ p.mouseClicked = function(){
     if (paraPara == false) paraPara = true;
     else paraPara = false;
   }
-  if(p.mouseX <= resetButtonX + 10 && p.mouseX >= resetButtonX && p.mouseY <= resetButtonY + 10 && p.mouseY >= resetButtonY) resetFoodWeb();
+  if(p.mouseX <= resetButtonX + 10 && p.mouseX >= resetButtonX && p.mouseY <= resetButtonY - 30 && p.mouseY >= resetButtonY - 40) resetFoodWeb();
   setFoodChainIndex(p.mouseX, p.mouseY);
 }
 
@@ -152,9 +154,9 @@ p.draw = function()
    p.fill(153,153,153);
    p.text("parasite-parasite", buttonX + 13, buttonY + 70);
    //reset button
-   p.rect(resetButtonX, resetButtonY, 10, 10);
    p.fill(0);
-   p.text("Reset the food web", resetButtonX + 13, resetButtonY + 10);
+   p.rect(resetButtonX, resetButtonY - 40, 10, 10);
+   p.text("Reset the food web", resetButtonX + 13, resetButtonY - 30);
 
    
    p.fill(102,194,165); p.circle(tpsX, tpsY, 15);
@@ -169,10 +171,25 @@ p.draw = function()
    p.text("Freeliving", tpsX + 10, tpsY + 25);
    p.text("Parasite", tpsX+10, tpsY+45);
    
-   popOutName(p.mouseX, p.mouseY);
    p.textSize(16);
 
-   p.text("Connectance: " + connectance.toFixed(4), resetButtonX, resetButtonY - 15);
+   p.text("Current connectance: " + connectance.toFixed(3), resetButtonX, resetButtonY - 10);
+   p.text("Current species: " + showS, resetButtonX, resetButtonY + 10);
+   p.text("Current links: " + showLink, resetButtonX, resetButtonY + 30);
+
+   
+   p.fill(102,194,165); p.circle(tpsX, tpsY, 15);
+   p.fill(1252,141,98); p.circle(tpsX, tpsY + 20, 15);
+   p.fill(141,160,203); p.circle(tpsX, tpsY + 40, 15);
+   
+   p.fill(0);
+   p.textSize(14);
+   p.text("Types of species", tpsX-10, tpsY-15);
+   p.textSize(14);
+   p.text("Basal", tpsX + 10, tpsY + 5);
+   p.text("Freeliving", tpsX + 10, tpsY + 25);
+   p.text("Parasite", tpsX+10, tpsY+45);
+   p.textSize(16);
 
    for(let i = 0; i < speciesNum; i++){
      if (allSpecies[i].getStatus()) drawFoodWeb(i);
@@ -193,13 +210,16 @@ p.draw = function()
    p.line(foodChainX - 350, foodChainY - 200, foodChainX + 350, foodChainY - 200);
 
    p.text("Ecosystem Name: Carpinteria, Location: California, USA",ecoInfoX, ecoInfoY+20);
-   p.text("Type: Salt Marsh, Total links: 2290, Total species: 128",ecoInfoX, ecoInfoY+45);
+   p.text("Type: Salt Marsh, Total links: 2290, Total species: 128, Connectance:0.139",ecoInfoX, ecoInfoY+45);
    p.line(ecoInfoX - 10 , ecoInfoY, ecoInfoX- 10 , ecoInfoY + 120);
    p.line(ecoInfoX - 10, ecoInfoY, ecoInfoX + 800, ecoInfoY);
    p.line(ecoInfoX + 800 , ecoInfoY, ecoInfoX + 800, ecoInfoY + 120);
    p.line(ecoInfoX - 10, ecoInfoY + 120, ecoInfoX + 800, ecoInfoY + 120);
 
-   p.text(infoLines, ecoInfoX, ecoInfoY + 60, 800, 150);}
+   p.text(infoLines, ecoInfoX, ecoInfoY + 60, 800, 150);
+   popOutName(p.mouseX, p.mouseY);
+
+ }
 
 function drawFoodWeb(i){
    let first = allSpecies[i];
@@ -296,6 +316,8 @@ function computeConnectance(){
     }
   }
   connectance = (link / (Math.pow(S, 2) - (ppba)*S + S - ppba + pr*ppba));
+  showLink = link;
+  showS = S;
 
 }
 
@@ -506,18 +528,27 @@ function popOutName(x, y){
     if(x < s.getXCor() + s.getDia()/2 && x > s.getXCor() - s.getDia()/2 
     && y > s.getYCor() - s.getDia()/2 && y < s.getYCor() + s.getDia()/2 ){      
       let curName = s.getName();
-    if(s.activated) p.circle(s.xCor, s.yCor, s.diameter + 5);
+    if(s.activated) {
+      p.circle(s.xCor, s.yCor, s.diameter + 5);
+      p.fill(s.getColor());
+      p.circle(s.xCor, s.yCor, s.diameter);
+      p.fill(0);
+    }
       if(x < bigCircleX){
-        x -= 140;      }
+        x -= 100;      }
       else{
-        x += 40;
+        x += 20;
       }
       if(y > bigCircleY){
         y += 30;
       }
       else{
-        y -= 30;
-      }
+        y -= 15;
+      }         
+      p.line(x - 10, y - 15, x+ 9 *curName.length, y - 15);
+      p.line( x+ 9 *curName.length, y - 15, x+ 9 *curName.length, y + 5);
+      p.line(x - 10, y - 15, x - 10, y + 5);
+      p.line(x - 10, y + 5, x+ 9 *curName.length, y + 5);
       p.text(curName, x , y );
 
     }

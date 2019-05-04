@@ -60,17 +60,17 @@ let sketch = function (p){
 
 // Initialises the data and bar chart.
 p.preload = function(){
-  matrix = p.loadTable('./data/BajaCalifornia/BajaCalifornia.csv', 'csv');
-  backgroundImage = p.loadImage('./data/BajaCalifornia/BajaCalifornia.jpg');
+  matrix = p.loadTable('./data/Berwick/Berwick.csv', 'csv');
+  backgroundImage = p.loadImage('./data/Berwick/back.jpg');
 }
 
 p.setup = function(){
   p.createCanvas(canvasX, canvasY);
   p.smooth(); 
-  infoLines = "The ocean ecosystem covers most of the earth's surface and is home to millions of plants and animals. Understanding the ocean ecosystem is important for children, as it affects everyone. It influences the weather all over the earth and produces about 70 percent of the oxygen we breathe."
   let speciesColor1 = p.color(102,194,165);
   let speciesColor2 = p.color(252,141,98);
   let speciesColor3 = p.color(141,160,203);
+  infoLines = "A forest of pine trees. Pine forests usually occur on dry slopes so needles that fall under the trees decompose very slowly. This thick layer of pine needles is another factor that reduces the understory vegetation. "
   // Load the data table.
   // The first row of the table saves all the name of species in the food web.
   // Extract them all and save them in a String array.
@@ -177,6 +177,7 @@ p.draw = function()
    p.text("Current species: " + showS, resetButtonX, resetButtonY + 10);
    p.text("Current links: " + showLink, resetButtonX, resetButtonY + 30);
 
+
    for(let i = 0; i < speciesNum; i++){
      if (allSpecies[i].getStatus()) drawFoodWeb(i);
    }
@@ -185,24 +186,24 @@ p.draw = function()
    p.image(backgroundImage,0,0,canvasX,canvasY);
    p.tint(255, 255);
    p.stroke(0);
-
    p.line(imageX - 10, imageY - 50,imageX - 10, imageY + 450);
    p.line(imageX - 10, imageY - 50,imageX + 310, imageY - 50);
    p.line(imageX + 310, imageY - 50,imageX + 310, imageY + 450);
    p.line(imageX + 310, imageY + 450, imageX - 10, imageY + 450);   
    p.line(foodChainX - 350, foodChainY - 200, foodChainX - 350, foodChainY + 200);
    p.line(foodChainX + 350, foodChainY - 200, foodChainX + 350, foodChainY + 200);
-   p.line(foodChainX - 350, foodChainY - 200, foodChainX + 350, foodChainY - 200);  
-   p.text("Ecosystem Name: Baja California, Location: Mexico",ecoInfoX, ecoInfoY+20);
-   p.text("Type: Ocean, Total links: 971, Total species: 120, Connectance:0.067",ecoInfoX, ecoInfoY+45);
-   p.line(ecoInfoX - 10 , ecoInfoY, ecoInfoX- 10 , ecoInfoY + 120);
+   p.line(foodChainX - 350, foodChainY - 200, foodChainX + 350, foodChainY - 200); 
+   p.line(ecoInfoX - 10 , ecoInfoY, ecoInfoX- 10 , ecoInfoY + 100);
    p.line(ecoInfoX - 10, ecoInfoY, ecoInfoX + 800, ecoInfoY);
-   p.line(ecoInfoX + 800 , ecoInfoY, ecoInfoX + 800, ecoInfoY + 120);
-   p.line(ecoInfoX - 10, ecoInfoY + 120, ecoInfoX + 800, ecoInfoY + 120);
+   p.line(ecoInfoX + 800 , ecoInfoY, ecoInfoX + 800, ecoInfoY + 100);
+   p.line(ecoInfoX - 10, ecoInfoY + 100, ecoInfoX + 800, ecoInfoY + 100);
+   p.text("Ecosystem Name: Berwick, Location: Otago, New Zealand",ecoInfoX, ecoInfoY+20)
+   p.text("Type: Pine Forest, Total links: 217, Total species: 77, Connectance: 0.048",ecoInfoX, ecoInfoY+45)
    p.text(infoLines, ecoInfoX, ecoInfoY + 60, 800, 150);
    popOutName(p.mouseX, p.mouseY);
 
- 
+
+
 }
 function drawFoodWeb(i){
    let first = allSpecies[i];
@@ -289,7 +290,7 @@ function computeConnectance(){
     let s = allSpecies[i];
     if(s.getStatus()){
       S++;
-      if(s.getType() == "Plant") ppba++;
+      if(s.getType() == "Basal") ppba++;
       else pr ++;
       for(let j = 0; j < speciesNum; j++){
         if(allSpecies[j].getStatus()){
@@ -301,7 +302,6 @@ function computeConnectance(){
   connectance = (link / (Math.pow(S, 2) - (ppba)*S + S - ppba + pr*ppba));
   showLink = link;
   showS = S;
-
 }
 
 function compFoodChainPrey(rela, x, y, level){
@@ -412,7 +412,7 @@ function drawFoodChains(index){
   }
   let type = curS.getType();
   // If type is Basal, set the color to royal blue.
-  if (type == "Plant") p.fill(p.color(102,194,165));
+  if (type == "Basal") p.fill(p.color(102,194,165));
   // If type is Freeliving, set the color to Spring Green1.
   else p.fill(p.color(252,141,98));
 
@@ -430,7 +430,7 @@ function drawFoodChains(index){
       temp = curSpecies[j];
       type = allSpecies[temp[4]].getType();
       // If type is Basal, set the color to royal blue.
-      if (type == "Plant") p.fill(p.color(102,194,165));
+      if (type == "Basal") p.fill(p.color(102,194,165));
       // If type is Freeliving, set the color to Spring Green1.
       else p.fill(p.color(252,141,98));
       p.ellipse(temp[0], temp[1], foodChainRadius, foodChainRadius);
@@ -449,7 +449,7 @@ function drawFoodChains(index){
       let temp = curSpecies[j];
       type = allSpecies[temp[4]].getType();
       // If type is Basal, set the color to royal blue.
-      if (type == "Plant") p.fill(p.color(102,194,165));
+      if (type == "Basal") p.fill(p.color(102,194,165));
       // If type is Freeliving, set the color to Spring Green1.
       else p.fill(p.color(252,141,98));
       p.ellipse(temp[0], temp[1], foodChainRadius, foodChainRadius);
@@ -473,7 +473,7 @@ function drawFoodChains(index){
    // text(description, 1400, 840, 400, 200);
    p.image(curS.getImg(), imageX, imageY, imageLength, imageHeight);
    p.textSize(15);
-   p.loadStrings("./data/BajaCalifornia/info/" + curName + ".txt", setDesc);
+   p.loadStrings("./data/Berwick/info/" + curName + ".txt", setDesc);
    p.text(descLines, descX, descY, descLength, descHeight);
    // this.description = Arrays.toString(lines);
 }
@@ -564,10 +564,10 @@ class Species {
       this.yCor = (bigCircleY + p.sin(p.radians(this.index * this.interval)) * bigCircleDia / 2.0);
       this.xNum = (bigCircleX + p.cos(p.radians(this.index * this.interval)) * (bigCircleDia / 2.0 + 10));
       this.yNum = (bigCircleY + p.sin(p.radians(this.index * this.interval)) * (bigCircleDia / 2.0 + 10));
-      if (this.type == "Plant") this.c = p.color(102,194,165);
+      if (this.type == "Basal") this.c = p.color(102,194,165);
       // If type is Freeliving, set the color to Spring Green1.
       else this.c = p.color(252,141,98);
-      this.img = p.loadImage("./data/BajaCalifornia/pics/" + this.name + ".jpg");
+      this.img = p.loadImage("./data/Berwick/pics/" + this.name + ".jpg");
 
   }
 

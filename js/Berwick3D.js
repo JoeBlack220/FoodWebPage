@@ -48,7 +48,7 @@ p.draw = function()
   // use the current mouse position with touchY to dolly the camera position towards and away from the data. 
   p.camera(cameraDistance,cameraDistance,cameraDistance, 0,0,0, 0,0,-1);
   // Rotate the data
-  p.rotateZ(p.radians(0.25*p.mouseX));
+  p.rotateZ(p.radians(0.25 * p.mouseX));
   
   var s = p.second();
   var t = (p.int(s/2))%5+1;
