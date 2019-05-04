@@ -232,7 +232,7 @@ function drawFoodWeb(i){
        let second = allSpecies[j];
        // draw links if two speceis have relations
        if(ijRelation != 0) {
-         if (predPray){
+         if (paraHost){
            if(ijRelation == 1) {
              p.strokeWeight(0.5);
              p.stroke(c);
@@ -253,15 +253,16 @@ function drawFoodWeb(i){
              p.stroke(c);
              p.line(first.getXCor(), first.getYCor(), second.getXCor(), second.getYCor());
          }
-         if(paraHost){
-           if(ijRelation==4||ijRelation==4.1||ijRelation==4.11||ijRelation==4.2) {
+       }
+         if(predPray){
+           if(ijRelation==4||ijRelation==4.1||ijRelation==4.11||ijRelation==4.2||ijRelation==5) {
              p.strokeWeight(0.45);
              p.stroke(c);
              p.line(first.getXCor(), first.getYCor(), second.getXCor(), second.getYCor());
            }
          }
          if (predHost){
-           if(ijRelation==5||ijRelation==6) {
+           if(ijRelation==6) {
              p.strokeWeight(0.5);
              p.stroke(c);
              p.line(first.getXCor(), first.getYCor(), second.getXCor(), second.getYCor());
@@ -280,7 +281,7 @@ function drawFoodWeb(i){
            } 
          }
        }
-     }
+     
    }
 }
 }

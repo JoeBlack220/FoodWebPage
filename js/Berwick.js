@@ -67,7 +67,7 @@ p.preload = function(){
 p.setup = function(){
   p.createCanvas(canvasX, canvasY);
   p.smooth(); 
-  infoLines = "The ocean ecosystem covers most of the earth's surface and is home to millions of plants and animals. Understanding the ocean ecosystem is important for children, as it affects everyone. It influences the weather all over the earth and produces about 70 percent of the oxygen we breathe."
+  infoLines = "Pine forests usually occur on dry slopes so needles that fall under the trees decompose very slowly. This thick layer of pine needles is another factor that reduces the understory vegetation"
   let speciesColor1 = p.color(102,194,165);
   let speciesColor2 = p.color(252,141,98);
   let speciesColor3 = p.color(141,160,203);
